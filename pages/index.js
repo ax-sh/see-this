@@ -9,18 +9,12 @@ export default function Home() {
   const [src, setSrc] = React.useState("");
   const bg = src ? { backgroundImage: `url("${src}")` } : {};
   const socket = useSocket("message", (message) => {
-    console.log(message, "<<<<<<<<<<<<<");
+    setSrc(message);
   });
   const onDrop = (medias) => {
     const img = medias[0];
     setSrc(img);
     socket.emit("change_bg", img);
-    // console.log(
-    //   "🚀 ~ file: index.js ~ line 19 ~ Home ~ medias",
-    //   medias,
-    //   src,
-    //   bg
-    // );
   };
   return (
     <div className={styles.container}>
@@ -31,12 +25,6 @@ export default function Home() {
 
       <main ref={dragDropZoneRef} className="stage" style={bg}>
         <DropZone onDrop={onDrop} />
-        {/* 
-        TODO drop listener
-        TODO change bg 
-
-        */}
-        {/* <img src={src} /> */}
       </main>
     </div>
   );
