@@ -13,7 +13,7 @@ export default function Home() {
   });
   const onDrop = (medias) => {
     const img = medias[0];
-    setSrc(img);
+    // setSrc(img);
     socket.emit("change_bg", img);
   };
   return (
